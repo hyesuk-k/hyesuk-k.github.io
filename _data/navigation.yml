@@ -5,8 +5,8 @@ main:
   - title: "Category"
     url: /categories/
 
-docs:
-  - title: AI
-    children:
-      - title: "Deep Learning"
-        url: /categories/dl
+#docs:
+#  - title: AI
+#    children:
+#      - title: "Deep Learning"
+#        url: /categories/dl
