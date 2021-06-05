@@ -4,6 +4,8 @@ main:
     url: /index.html
   - title: "Category"
     url: /categories/
+  - title: "Tags"
+    url: /tags/
 
 #docs:
 #  - title: AI
