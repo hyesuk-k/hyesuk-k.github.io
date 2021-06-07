@@ -76,8 +76,7 @@ int main() {
 * r-value 참조
   + r-value 주소값을 취할 수 없는 값, 코드의 오른쪽에만 있을 수 있는 값
   + 참고 : <https://modoocode.com/189>
-
-<details><summary>r-value</summary>
+  + <details><summary>r-value</summary>
 <p>
 
 ```cpp
