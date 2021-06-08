@@ -1,0 +1,12 @@
+version: "3.3"
+
+services:
+  blog:
+    image: jekyll/jekyll:latest
+    command: jekyll serve --force_polling --drafts --livereload --trace
+    ports:
+      - "4000:4000"
+    volumes:
+      - ".:/srv/jekyll"
+
+# https://velog.io/@jundragon/visual-studio-code%EC%97%90%EC%84%9C-docker%EB%A1%9C-jekyll-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A1%9C%EC%BB%AC-%ED%99%98%EA%B2%BD-%EB%A7%8C%EB%93%A4%EA%B8%B0
