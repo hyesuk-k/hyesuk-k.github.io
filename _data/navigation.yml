@@ -2,10 +2,14 @@
 main:
   - title: "Home"
     url: /index.html
+  - title: "Portfolio"
+    url: /portfolio/
   - title: "Category"
     url: /categories/
   - title: "Tags"
     url: /tags/
+  - title: Recents
+    url: /
 
 #docs:
 #  - title: AI

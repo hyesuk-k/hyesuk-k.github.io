@@ -1,0 +1,168 @@
+---
+title: Portfolio
+permalink: /portfolio/
+classes: wide
+description: Portfolio for HSK
+layout: single
+---
+
+<h3>Tech Stack.</h3>
+<ul>
+    <li>P​rogramming language
+        <ul>
+            <li>C, C++, Python</li>
+        </ul>
+    </li>
+    <li>​SCM
+        <ul>
+            <li>GitLab, Git</li>
+        </ul>
+    </li>
+    <li>​DevOps
+        <ul>
+            <li>GitLab CI, Jenkins</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>Experience</h3>
+<table>
+    <tr>
+        <th> Time </th>
+        <th> Description </th>
+        <th> Company </th>
+    </tr>
+    <tr>
+        <td>
+            2015.04~Current
+        </td>
+        <td>
+            <a href="http://wins21.com/product/product_030101.html?num=24">IPS/DDoS</a> Developer
+        </td>
+        <td>
+            <a href="http://wins21.com/main/main.html">WINS</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            2013.03~2015.02
+        </td>
+        <td>
+            Master's course
+        </td>
+        <td>
+            <a href="http://ailab.kyonggi.ac.kr/">Kyonggi University in AI Lab</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            2009.03~2013.02
+        </td>
+        <td>
+            Student
+        </td>
+        <td>
+            <a href="http://www.kyonggi.ac.kr/KyonggiUp.kgu">Kyonggi University</a>
+        </td>
+    </tr>
+</table>
+
+<h3>Projects</h3>
+<table>
+    <tr>
+        <th> Title </th>
+        <th> Company </th>
+        <th> Skills </th>
+        <th> Time </th>
+    </tr>
+    {% for portfolio in site.portfolio reversed %}
+
+    {% if portfolio.categories contains "project" and portfolio.categories.size == 1 %}
+    <tr>
+        <td>
+            {% assign content = portfolio.content | strip_newlines %}
+            {% if content != ""  or portfolio.redirect_to %}
+                <a href="{{ portfolio.url }}">{{ portfolio.title }}</a>
+            {% else %}
+                {{ portfolio.title }}
+            {% endif %}
+        </td>
+        <td>{{ portfolio.company }}</td>
+        <td>{{ portfolio.skills | join: ", " }}</td>
+        <td>{{ portfolio.time }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+
+<h3>Personal Projects(Including Student)</h3>
+<table>
+    <tr>
+        <th> Title </th>
+        <th> Skills </th>
+        <th> Time </th>
+    </tr>
+    {% for portfolio in site.portfolio reversed %}
+
+    {% if portfolio.categories contains "project" and portfolio.categories contains "personal" %}
+    <tr>
+        <td>
+            {% assign content = portfolio.content | strip_newlines %}
+            {% if content != ""  or portfolio.redirect_to %}
+                <a href="{{ portfolio.url }}">{{ portfolio.title }}</a>
+            {% else %}
+                {{ portfolio.title }}
+            {% endif %}
+        </td>
+        <td>{{ portfolio.skills | join: ", " }}</td>
+        <td>{{ portfolio.time }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+
+<hr style="margin-top:25px; margin-bottom: 25px;">
+
+<h3>Awards / Grants</h3>
+<table>
+    <tr>
+        <th> Title </th>
+        <th> Time </th>
+    </tr>
+    {% for portfolio in site.portfolio reversed %}
+        {% if portfolio.categories contains "award" or portfolio.categories contains "grant" %}
+        <tr>
+            <td>
+                {% assign content = portfolio.content | strip_newlines %}
+                {% if content != ""  or portfolio.redirect_to %}
+                    <a href="{{ portfolio.url }}">{{ portfolio.title }}</a>
+                {% else %}
+                    {{ portfolio.title }}
+                {% endif %}
+            </td>
+            <td>{{ portfolio.time }}</td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+
+<h3>Publication</h3>
+<table>
+    <tr><td>
+        <b>[Master Thesis]</b>
+        <a href="http://www.riss.kr/link?id=T13732536">Effective Activity Recognition with Probabilistic Graphical Model Learning
+.</a>
+        Master Thesis. University of Kyonggi, 2015
+    </td></tr>
+    <tr><td>
+        <b>Hye S. Kim</b>*, In C. Kim,
+        <a href="https://www.hindawi.com/journals/ahci/2015/785349/">"Dynamic Arm Gesture Recognition Using Spherical Angle Features and Hidden Markov Models"</a>
+        <i>Journal of Advances in Human-Computer Interaction</i>, Nov, 2015
+    </td></tr>
+</table>
+
+<h3>Education</h3>
+<ul>
+    <li>2013~2015, Master student in AI Lab at University of Kyonggi (<a href="http://ailab.kyonggi.ac.kr/">AI Lab</a>)</li>
+    <li>2009~2013, Computer Sience at University of Kyonggi, Suwon, Korea.</li>
+</ul>

@@ -286,3 +286,10 @@ defaults:
       sidebar:
         nav: "docs"
       sidebar_main: true
+
+
+collections:
+  portfolio:
+    output: true
+    permalink: /:collection/:path/
+    title: Portfolio
