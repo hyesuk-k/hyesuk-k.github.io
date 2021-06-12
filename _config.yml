@@ -286,7 +286,32 @@ defaults:
       sidebar:
         nav: "docs"
       sidebar_main: true
-
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+  values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: # true
+      share: true
+      related: true
+      sidebar:
+        nav: "docs"
+      sidebar_main: true
+  # _portfolios
+  - scope:
+      path: ""
+      type: portfolio
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: # true
+      share: true
+      related: true
+      sidebar_main: true
 
 collections:
   portfolio:

@@ -8,10 +8,10 @@ main:
     url: /categories/
   - title: "Tags"
     url: /tags/
-  - title: Recents
-    url: /
 
 #docs:
+#  - title: Recents
+#    url: /
 #  - title: AI
 #    children:
 #      - title: "Deep Learning"
