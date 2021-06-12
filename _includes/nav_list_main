@@ -8,7 +8,7 @@
            💌 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">{{sum}}</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
       </li>
       <li>
-        <span class="nav__sub-title">C/C++</span>
+        <span class="nav__sub-title">Programming</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "cpp" %}
@@ -27,6 +27,13 @@
                 {% for category in site.categories %}
                     {% if category[0] == "C" %}
                         <li><a href="/categories/c" class="">C ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+                        <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "OOP" %}
+                        <li><a href="/categories/stl" class="">객체지향 ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
