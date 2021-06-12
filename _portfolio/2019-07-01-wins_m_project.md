@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 time: "2019.06 ~ 2019.08"
 title: "암호화 트래픽 분석 기능 지원"
 skills: [C, Python]
