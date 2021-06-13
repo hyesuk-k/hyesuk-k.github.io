@@ -93,19 +93,30 @@ permalink: /portfolio/
     {% endfor %}
 </table>
 
-<h3>Publication</h3>
+<h3>Personal Projects(Including Student)</h3>
 <table>
-    <tr><td>
-        <b>[Master Thesis]</b>
-        <a href="http://www.riss.kr/link?id=T13732536">Effective Activity Recognition with Probabilistic Graphical Model Learning
-.</a>
-        Master Thesis. University of Kyonggi, 2015.02
-    </td></tr>
-    <tr><td>
-        <b>Hye S. Kim</b>*, In C. Kim,
-        <a href="https://www.hindawi.com/journals/ahci/2015/785349/">"Dynamic Arm Gesture Recognition Using Spherical Angle Features and Hidden Markov Models"</a>
-        <i>Journal of Advances in Human-Computer Interaction</i>, 2015.11
-    </td></tr>
+    <tr>
+        <th> Time </th>
+        <th> Title </th>
+        <th> Skills </th>
+    </tr>
+    {% for portfolio in site.portfolio reversed %}
+
+    {% if portfolio.categories contains "personal" %}
+    <tr>
+        <td>{{ portfolio.time }}</td>
+        <td>
+            {% assign content = portfolio.content | strip_newlines %}
+            {% if content != ""  or portfolio.redirect_to %}
+                <a href="{{ portfolio.url }}">{{ portfolio.title }}</a>
+            {% else %}
+                {{ portfolio.title }}
+            {% endif %}
+        </td>        
+        <td>{{ portfolio.skills | join: ", " }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
 </table>
 
 <h3>Education</h3>
@@ -113,3 +124,12 @@ permalink: /portfolio/
     <li>2013 ~ 2015, Master student in AI Lab at University of Kyonggi (<a href="http://ailab.kyonggi.ac.kr/">AI Lab</a>)</li>
     <li>2009 ~ 2013, Computer Sience at University of Kyonggi, Suwon, Korea.</li>
 </ul>
+
+<table>
+    <tr><td>
+        <b>[Master Thesis]</b>
+        <a href="http://www.riss.kr/link?id=T13732536">Effective Activity Recognition with Probabilistic Graphical Model Learning
+.</a>
+        Master Thesis. University of Kyonggi, 2015.02
+    </td></tr>
+</table>
