@@ -18,7 +18,14 @@
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "STL" %}
+                    {% if category[0] == "oop" %}
+                        <li><a href="/categories/oop" class="">객체지향 ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "stl" %}
                         <li><a href="/categories/stl" class="">C++ STL & 표준 ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
@@ -27,13 +34,6 @@
                 {% for category in site.categories %}
                     {% if category[0] == "C" %}
                         <li><a href="/categories/c" class="">C ({{category[1].size}})</a></li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-                        <ul>
-                {% for category in site.categories %}
-                    {% if category[0] == "OOP" %}
-                        <li><a href="/categories/stl" class="">객체지향 ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
