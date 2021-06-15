@@ -13,3 +13,6 @@
 
 * git blog markdown
   + [jekyll markdown](https://www.markdownguide.org/tools/jekyll/)
+
+* git tig
+  + [tig manual](https://ujuc.github.io/2016/02/10/tig-manual/)
