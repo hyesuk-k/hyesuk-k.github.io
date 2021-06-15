@@ -1,5 +1,6 @@
 ---
 title:  "Raspberry Pi 설치"
+excerpt: 친구가 준 Raspberyy Pi와 무선 동글 사용 준비 기록
 
 categories:
   - 'rpi'
@@ -10,7 +11,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-06-15
-last_modified_at: 2021-06-15
+last_modified_at: 2021-06-16
 ---
 
 * 참고 사이트
@@ -47,10 +48,10 @@ last_modified_at: 2021-06-15
   + OS : RASPBERRY PI OS (32-BIT)
   + SD Card : Raspberry 설치를 위해 연결한 SD Card로 선택
   + Write 버튼 클릭
-![Image-Download Pi OS]({{"/assets/img/rpi_imager.PNG"}})
+![Istall Pi OS]({{"/assets/img/rpi_imager.PNG"}})
 
 * 설치 완료 후 SD Card Reader Card 제거 (약 1시간 정도 소요된 듯)
-![Image-Download Pi OS]({{"/assets/img/rpi_imager_end.PNG"}})
+![Installed OS in SD]({{"/assets/img/rpi_imager_end.PNG"}})
 
 # 3. Raspberry Pi 주변 기기 연결하기
 
@@ -70,6 +71,8 @@ last_modified_at: 2021-06-15
   + Setup Complete! 후 재시작
 
 # 4. 무선 인터넷 설정 (선택)
+
+* 결론 : 무선 인터넷 이름은 영어+숫자로 설정한다.
 
 * WiFi 이름이 안나와서 삽질...
   + iwconfig 명령어로 무선 장치 조회 : wlan0로 설정되어 있음
@@ -94,6 +97,8 @@ $ sudo apt upgrade
 ```
 
 # 5. 한글 설정 (선택)
+
+* 결론 : 한글 폰트와 fcitx를 사용하자..
 
 * 한글 입력을 위한 ibus 설치 및 한글 폰트 설치
   + <a href="https://hangeul.naver.com/font">네이버 나눔</a>
@@ -159,23 +164,58 @@ IM_CONFIG_DEFAULT_MODE=fcitx 로 변경 후 저장
 
 ## 6-1. xrdp를 이용한 Raspberry Pi 원격 접속하기
   
-* realvnc-vnc-server 패키지 제거 및 tightvncserver/xrdp 설치
+* tightvncserver/xrdp 설치
 
 ```
-$ sudo apt-get purge realvnc-vnc-server
-$ sudo apt-get install tightvncserver
-$ sudo apt-get install xrdp
+$ sudo apt-get install tightvncserver xrdp
 ```
 
-* 설정-Raspberry Pi Configuration 선택 Interfaces 에서 SSH/VNC Enable
+* 설정 -> Raspberry Pi Configuration 선택-> Interfaces에서 SSH/VNC Enable
 
 ## 6-2. Raspberry Pi에 고정IP 할당하기
 
+* ifconfig로 내 IP 주소 확인하기
+* 네트워크 설정 파일 수정 (무선 사용 중이므로 wlan0 참고)
+
 ```
 $ ifconfig
-$ sudo vim /etc/dhcpcd.conf
+$ sudo vi/nano /etc/dhcpcd.conf
+
+static ip_address=내 IP 192.168.0.48 / 192.168.0.1
+static routers=gw 주소 (맨 마지막을 1로 설정)
+저장
+
+$ sudo /etc/init.d/networking restart
 ```
 
+* reboot!
+
+## 6-3. 원격 데스킅톱 (in Windows)
+
+* 실패함
+
+![Image-Failed remote]({{"/assets/img/rpi_vnc_fail.PNG"}})
+
+* vnc-server와 xrdp 제거 후 xrdp만 재설치
+
+```
+$ sudo apt-get purge realvnc-vnc-server
+$ sudo apt-get purge xrdp
+$ reboot
+$ sudo apt-get install xrdp
+```
+
+* tightvncserver 설치 및 vnccserver 비밀번호 생성
+
+```
+$ sudo apt-get install -y tightbncserver
+$ vncserver
+> password 입력
+```
+
+* id : pi / pass word : 변경한 비밀번호로 재접속 시도
+
+>> 성공!
 
 # 7. 개발 환경 구축
 
