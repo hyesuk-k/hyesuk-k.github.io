@@ -1,6 +1,6 @@
 ---
 title:  "Raspberry Pi 설치"
-excerpt: 친구가 준 Raspberyy Pi와 무선 동글 사용 준비 기록
+excerpt: 친구가 준 Raspberyy Pi 설정 기록
 
 categories:
   - 'rpi'
@@ -222,6 +222,13 @@ $ vncserver
 * vim 설치
 * git
 * c++ / python 등
+
+```
+$ sudo apt-get install vim
+$ sudo apt-get install git
+$ sudo apt-get install gcc
+$ sudo apt-get install python3
+```
 
 
 # 기타
