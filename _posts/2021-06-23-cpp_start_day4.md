@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-06-23
-last_modified_at: 2021-06-25
+last_modified_at: 2021-06-26
 
 ---
 
@@ -207,7 +207,6 @@ public:
 }
 ```
 
-
 ## 복사 생성자와 소멸자
 
 * new 와 malloc의 차이
@@ -275,3 +274,242 @@ t2 = t1;
   + 복사된 인스턴스 변수는 원본 객체의 인스턴스 변수와 같은 메모리 주소를 참조
   + 얕은 복사된 객체의 메모리 주소값이 변경되면 원본 / 복사 객체의 인스턴스 변수 값이 같이 변경됨
 
+## 생성자의 초기화 리스트 (Initializer list)
+
+* 생성자 이름 뒤에 ":" 와 함께 나타남
+* 생성자 호출과 동시에 멤버 변수를 초기화 해줌
+
+* 생성자 초기화 리스트 사용
+
+```cpp
+(생성자 이름) : var1(arg1), var2(arg2) {}
+```
+
+* 사용 예제 )
+
+```cpp
+#include <iostream>
+
+class Test {
+  int a;
+  int b;
+  int c;
+
+public:
+  Test();
+  Test(int a, int b);
+  void show_values();
+};
+
+Test::Test() : a(10), b(20), c(30) {}
+
+Test::Test(int a, int b)
+    : a(a), b(b) {}  // c 값은 설정하지 않음
+
+void Test::show_values() {
+  std::cout << a << " | " << b << " | " << c << std::endl;
+}
+
+int main() {
+  Test t1;
+  Test t2(1, 5);
+
+  t1.show_values();
+  t2.show_values();
+}
+
+-- 실행 결과 --
+10 | 20 | 30
+1 | 5 | 0
+```
+
+* 생성자와 초기화 리스트의 차이
+  + 생성자는 생성 후 초기화를 수행 like "int a; a = 10;"
+  + 초기화 리스트는 생성과 초기화를 동시에 수행 like "int a = 10;"
+  + 초기화 대상이 <b>class</b>라면?
+    - 생성자의 경우, 복사 생성자가 호출됨
+    - 초기화 리스트의 경우, 디폴트 생성자가 호출된 후 대입을 수행함
+  + <b> 레퍼런스와 상수 </b>: 생성과 동시에 초기화 되어야 함
+    - class 내부에 레퍼런스 변수나 상수가 포함될 경우, 반드시 초기화 리스트를 사용
+
+* 생성자와 초기화 리스트
+
+```cpp
+Test::Test() {
+  a = 10;
+  b = 20;
+  c = 30;
+}
+
+Test::Test() : a(10), b(20), c(30) {}
+```
+
+* 무조건 초기화 리스트를 사용해야 하는 경우,
+
+```cpp
+#include <iostream>
+
+class Test{
+  int a;
+  int b;
+  const int c;
+
+public:
+  Test();
+  Test(int a, int b);
+  Test(int a, int b, int c);
+
+  void show_values();
+};
+
+Test::Test()
+  : a(10), b(20), c(30) {}
+
+Test::Test(int a, int b)
+  : a(a), b(b), c(30) {}  // c가 const 이므로 무조건 초기화가 수행되어야 함 
+
+Test::Test(int a, int b, int c)
+  : a(a), b(b), c(c) {}
+
+void Test::show_values() {
+  std::cout << a << " | " << b << " | " << c << std::endl;
+}
+
+int main() {
+  Test t1;
+  Test t2(1, 5);
+  Test t3(100, 200, 300);
+
+  t1.show_values();
+  t2.show_values();
+  t3.show_values();
+}
+
+-- 실행 결과 --
+10 | 20 | 30
+1 | 5 | 30
+100 | 200 | 300
+```
+
+# keyword
+
+### static
+
+* 클래스 내에 static 함수와 변수가 존재할 수 있음
+
+#### static 변수
+
+* 전역변수와 같으나 클래스 하나에만 종속되는 변수
+* 어떤 class의 static 멤버 변수는, 객체가 소멸될 때 소멸하지 않고 프로그램이 종료될 때 소멸됨
+* static 멤버 변수는 class의 모든 객체가 공유하여, 모든 객체들이 단 한 개의 static 멤버 변수를 사용함
+
+```cpp
+#include <iostream>
+
+class Test{
+  static int s;
+  int a;
+  int b;
+  const int c;
+public:
+  Test();
+  Test(int a, int b);
+  Test(int a, int b, int c);
+  
+  void show_values();
+  ~Test() { s--; }
+};
+
+int Test::s= 0;
+
+Test::Test()
+  : a(10), b(20), c(30) {
+    s++;
+}
+
+Test::Test(int a, int b)
+  : a(a), b(b), c(30) {
+    s++;
+}
+
+Test::Test(int a, int b, int c)
+  : a(a), b(b), c(c) {
+    s++;
+}
+
+void Test::show_values() {
+  std::cout << a << " | " << b << " | " << c << std::endl;
+  std::cout << "ststic value = " << s << std::endl;
+}
+
+int main() {
+  Test t1;
+  t1.show_values();
+
+  Test t2(1, 5);
+  t2.show_values();
+
+  Test t3(100, 200, 300);
+  t3.show_values();
+
+  return 0;
+}
+
+-- 실행 결과 --
+10 | 20 | 30
+ststic value = 1
+1 | 5 | 30
+ststic value = 2
+100 | 200 | 300
+ststic value = 3
+```
+
+#### static 함수
+
+* 특정 객체에 종속되지 않고 클래스 전체에 딱 1개만 정의
+* 멤버 함수는 객체를 만들어 멤버 함수를 호출
+
+```
+(객체).(멤버 함수)
+```
+
+* static 함수는 객체가 없어도 클래스 자체에서 호출 가능
+  + 어떤 객체도 static 함수를 소유하고 있지 않음
+
+```
+(클래스)::(static 함수)
+```
+
+### this
+
+* 객체 자신을 가리키는 포인터의 역할
+* 모든 멤버 함수 내에서는 this 키워드가 정의 되어 있음
+* 클래스 내에 정의된 함수 중 this 키워드가 없는 경우는 static 함수 뿐
+
+```cpp
+static bool bigger_ten;
+
+Test& Test::func_t(int a) {
+  num = a;  // this->num = a;
+  if (num > 10)  // if (this->num > 10)
+    bigger_ten = true;
+  else
+    bigger_ten = false;
+  
+  return *this;
+}
+```
+### const 
+
+* 변수의 값을 바꾸지 않고 읽기만 하는 상수 같은 멤버 함수를 상수 함수로 선언 가능
+
+* 상수 함수를 정의하는 방법
+
+```cpp
+(기존의 함수의 정의) const;
+
+const int default_number;
+
+int Test::getNumber() const { return default_number; }
+// getNumber 함수는 상수 멤버 함수로 정의됨
+```
