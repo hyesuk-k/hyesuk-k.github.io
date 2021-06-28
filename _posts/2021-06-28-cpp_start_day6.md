@@ -35,7 +35,7 @@ bool operator==(MyString& str);
 
 * '**'와 같은 기존에 없는 새로운 연산자 정의는 불가
 * 오버로딩된 연산자는 non-static 클래스 멤버 함수이거나 전역 함수
-* 참고 : <a href=http://courses.cms.caltech.edu/cs11/material/cpp/donnie/cpp-ops.html>연산자 오버로딩 가이드</a> 
+* 참고 : [연산자 오버로딩 가이드](http://courses.cms.caltech.edu/cs11/material/cpp/donnie/cpp-ops.html)
 
 
 # 오버로딩이 불가능한 연산자
