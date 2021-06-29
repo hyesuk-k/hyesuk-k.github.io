@@ -38,7 +38,7 @@ permalink: /portfolio/
             EPP Agent Developer
         </td>
         <td>
-            <a href="https://www.ahnlab.com/kr/site/main.do">Ahnlab</a>
+            <a> </a>
         </td>
     </tr>
     <tr>
