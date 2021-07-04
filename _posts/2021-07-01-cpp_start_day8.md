@@ -79,3 +79,58 @@ public:
 class Derived : public Base
 ```
 
+# protected
+
+* C++ 접근 지시자
+  + private
+    - 자신만 접근 가능
+  + protected
+    - 상속 받는 클래스에서는 접근 가능
+  + public
+    - 모든 클래스에서 접근 가능
+
+* class 를 상속 받을 때의 접근 지시자에 따라 상속 받는 클래스에서 기반 클래스의 멤버들의 실제 동작이 결정됨
+  + public 상속 : 기반 클래스의 접근 지시자들에 영향 없이 그대로 동작
+  + protected 상속 : 파생 클래스 입장에서 public이 protected로 변경되고, 나머지는 유지
+  + private 상속 : 파생 클래스의 모든 접근 지시자가 private로 변경됨
+
+* 예제 : class Derived 가 Base 클래스를 private로 상속받는 경우,
+
+```cpp
+#include <iostream>
+#include <string>
+
+class Base {
+ public:
+  std::string parent_string;
+
+  Base() : parent_string("기반") { std::cout << "기반 클래스" << std::endl; }
+
+  void what() { std::cout << parent_string << std::endl; }
+};
+class Derived : private Base {
+  std::string child_string;
+
+ public:
+  Derived() : child_string("파생"), Base() {
+    std::cout << "파생 클래스" << std::endl;
+  }
+
+  void what() { std::cout << child_string << std::endl; }
+};
+int main() {
+  Base p;
+  // Base 에서는 parent_string 이 public 이므로
+  // 외부에서 당연히 접근 가능하다.
+  std::cout << p.parent_string << std::endl;
+
+  Derived c;
+  // 반면에 Derived 에서는 parent_string 이
+  // (private 상속을 받았기 때문에) private 이
+  // 되어서 외부에서 접근이 불가능하다.
+  std::cout << c.parent_string << std::endl;
+
+  return 0;
+}
+```
+
