@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 filetype off    " required
 
 " set the runtime path to include Vundle and initialize 
@@ -25,11 +27,11 @@ filetype plugin indent on    " required
 
 " see :h vundle for more details or wiki for FAQ 
 
-" nerdtree : F8키 누르면 ON/OFF
+" nerdtree : use F8 func key for ON/OFF
 nmap <F8> :NERDTreeToggle<CR> 
 let g:NERDTreeWinPos = "right"
 
-" taglist-plus : F7키 누르면 ON/OFF
+" taglist-plus : use F7 func key for ON/OFF
 nmap <F7> :TlistToggle<CR> 
 let Tlist_Ctags_Cmd = "/usr/bin/ctags" 
 let Tlist_Inc_Winwidth = 0 
@@ -42,7 +44,8 @@ let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
 let g:airline_theme='hybrid' 
 set laststatus=2 " turn on bottom bar 
 
-" ctrlp : 성능 향상, Ctrl + P 눌렀을 때, 파일 목록 출력됨
+" ctrlp : for performance
+" Ctrl + P : open file lists
 let g:ctrlp_custom_ignore = { 
   \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$', 
   \ 'file': '\v\.(exe|so|dll)$' 
