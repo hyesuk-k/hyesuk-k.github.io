@@ -7,12 +7,13 @@ categories:
 tags:
   - dev_utils
   - vim
+  - setup
 
 toc: true
 toc_sticky: true
 
 date: 2021-07-07
-last_modified_at: 2021-07-07
+last_modified_at: 2021-07-10
 ---
 
 * Ubuntu 20.04 LTS 기준으로 설정
@@ -37,6 +38,7 @@ set <옵션>
 
 ```
 syntax on
+set mouse=a " use mouse in vim
 set ts=4    " tabstop  (1tab to 4 space)
 set sw=4    " shift width
 set ex      " expandtab (tab to space)

@@ -6,12 +6,13 @@ categories:
   - 'rpi'
 tags:
   - RaspberryPi
+  - setup
 
 toc: true
 toc_sticky: true
 
 date: 2021-06-15
-last_modified_at: 2021-06-16
+last_modified_at: 2021-07-10
 ---
 
 * 참고 사이트
@@ -41,17 +42,17 @@ last_modified_at: 2021-06-16
 ## 2-2. Raspberry Pi OS 설치
 
 * <a herf="https://www.raspberrypi.org/software/">OS Download</a>
-![Image-Download Pi OS]({{"/assets/img/rpi_os_download.PNG"}})
+![Image-Download Pi OS]({{"/assets/img/rpi/rpi_os_download.PNG"}})
   + 사용중인 OS의 설치 파일을 선택하여 다운로드
 
 * Installer 실행 후, OS/SD Card를 선택
   + OS : RASPBERRY PI OS (32-BIT)
   + SD Card : Raspberry 설치를 위해 연결한 SD Card로 선택
   + Write 버튼 클릭
-![Istall Pi OS]({{"/assets/img/rpi_imager.PNG"}})
+![Istall Pi OS]({{"/assets/img/rpi/rpi_imager.PNG"}})
 
 * 설치 완료 후 SD Card Reader Card 제거 (약 1시간 정도 소요된 듯)
-![Installed OS in SD]({{"/assets/img/rpi_imager_end.PNG"}})
+![Installed OS in SD]({{"/assets/img/rpi/rpi_imager_end.PNG"}})
 
 # 3. Raspberry Pi 주변 기기 연결하기
 
@@ -194,7 +195,7 @@ $ sudo /etc/init.d/networking restart
 
 * 실패함
 
-![Image-Failed remote]({{"/assets/img/rpi_vnc_fail.PNG"}})
+![Image-Failed remote]({{"/assets/img/rpi/rpi_vnc_fail.PNG"}})
 
 * vnc-server와 xrdp 제거 후 xrdp만 재설치
 

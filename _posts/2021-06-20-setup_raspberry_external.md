@@ -6,12 +6,13 @@ categories:
   - 'rpi'
 tags:
   - RaspberryPi
+  - setup
 
 toc: true
 toc_sticky: true
 
 date: 2021-06-20
-last_modified_at: 2021-06-20
+last_modified_at: 2021-07-10
 ---
 
 # 설정 참고
@@ -45,7 +46,7 @@ pi@pi:~ $ cat /etc/ssh/ssh_config | grep -i port
 ```
 
 * [기본설정]-[시스템 요약 정보]에서 <b>외부 IP 주소</b> 확인하기
-![checkExt]({{"/assets/img/rpi_ext.PNG"}})
+![checkExt]({{"/assets/img/rpi/rpi_ext.PNG"}})
 
 # ssh 접속
 
