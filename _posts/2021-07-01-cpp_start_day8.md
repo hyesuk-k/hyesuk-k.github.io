@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-01
-last_modified_at: 2021-07-04
+last_modified_at: 2021-07-10
 
 ---
 
@@ -134,3 +134,86 @@ int main() {
 }
 ```
 
+# 가상 함수와 다형성
+
+## is - a 와 has - a 
+
+### is - a
+
+```cpp
+class Manager : public Employee
+```
+
+* 상속관계
+* Manager is a Emplyee
+* Manager 클래스는 Employee의 모든 기능을 포함
+
+![M_is_a_E]({{"/assets/img/cpp/m_ia_a_e.png"}})
+
+
+* 클래스는 파생될수록 좀 더 특수화(구제화;specialize) 된다
+* 반대로, 기반 클래스로 올라갈수록 좀 더 일반화(generalize) 된다
+
+
+### has - a
+
+* 클래스가 다른 클래스를 가짐
+
+```cpp
+class Car {
+  private:
+    Engine e; // Car class has a Engine class
+    Brake b;  // Car class has a Brake class
+    ...
+}
+```
+
+## Overrding with Inheritance
+
+* 업 캐스팅
+  + 파생 클래스에서 기반 클래스로 캐스팅 하는것
+  + Base와 같은 부분이 있으므로 가능
+* 다운 캐스팅
+  + Base + a (Derived에서 선언된 변수와 함수)
+  + Base class에 a 에 대한 내용이 정의되어 있지 않으므로 컴파일 에러
+
+```cpp
+class Base {
+  std::string s;
+
+  public:
+    Base() : s("base") {std::cout << "기반 클래스 " << std::endl; }
+    what() { std::cout << s << std::endl; }
+}
+
+class Derived : public Base { // Derived is a Base
+  std::string s;
+
+  public:
+    Derived() : s("derived") {std::cout << "파생 클래스 " << std::endl; }
+    what() { std::cout << s << std::endl; }
+}
+
+int main () {
+  Base p;
+  Derived c;
+  std::cout << "===포인터 버전===" << std::endl;
+  Base* p_c = &c; // 업 캐스팅
+  p_c->what();
+
+  return 0;
+}
+```
+
+* 실행 결과
+```
+기반 클래스  >> constructor Base
+기반 클래스  >> constructor Base
+파생 클래스  >> constructor Derived
+===포인터 버전===
+base        >> p_c 는 Base 의 포인터이므로 Base의 what 을 호출함
+```
+
+## dynamic_cast
+
+* 
