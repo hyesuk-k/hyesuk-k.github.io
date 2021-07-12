@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-01
-last_modified_at: 2021-07-10
+last_modified_at: 2021-07-12
 
 ---
 
@@ -216,4 +216,42 @@ base        >> p_c 는 Base 의 포인터이므로 Base의 what 을 호출함
 
 ## dynamic_cast
 
-* 
+* 상속 관계에 있는 두 포인터들 간에 캐스팅을 해줌
+  + 부모 클래스의 포인터에서 자식 클래스의 포인터로 다운 캐스팅을 해줌
+  + 다운 캐스팅은 run time 때 해당 타입의 다운 캐스팅 가능 여부를 체크
+    - compile time에 오류를 찾기 어려움
+    - run time 비용이 조금 높아짐
+* 안전한 다운 캐스팅에 사용됨
+* 사용 예)
+
+```cpp
+dynamic_cast<new_type>(expression)
+
+Derived* p_c = dynamic_cast<Derived*>(p_p);
+```
+
+## virtual keyword
+
+* 가상함수
+
+```cpp
+virtual void funcName() {std::cout << "Base or Derived?" << std::endl; }
+```
+
+* Base class (상속되지 않은 클래스) 내에서 선언
+* Derived class (상속된 클래스)에 의해 재정의 되는 멤버 함수
+
+* 동적 바인딩; dynamic binding : compile time에 어떤 함수가 실행될 지 결정되지 않고, run time 시에 정해짐
+* 정적 바인딩; static binding : compile time 에 어떤 함수가 호출될 지 결정됨 (일반적인 함수 사용)
+
+## override keyword
+
+
+* C++ 11 지원
+* Derived class에서 Base class의 가상 함수를 오버라이드 하는 경우 사용됨 (명시적)
+
+```cpp
+void what() override { std::cout << s << std::endl; }
+```
+
+
