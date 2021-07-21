@@ -35,7 +35,7 @@ permalink: /portfolio/
             2021.07 ~ current
         </td>
         <td>
-            EPP Agent Developer
+            EPA Developer
         </td>
         <td>
             <a> </a>
