@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-22
-last_modified_at: 2021-07-22
+last_modified_at: 2021-07-23
 
 ---
 
@@ -112,7 +112,143 @@ int main() {
 * 스트림의 상태를 위해 시작, 다음으로 읽을 문자, 끝을 나타내는 3가지 포인터를 가짐
 * 버퍼의 종류에 따라 입력 버퍼 (get area), 출력 버퍼 (put area)을 구분함
 
+
+❗참고 : <https://modoocode.com/215>
+
 # C++ 파일 입출력
 
+## ifstream을 이용한 파일 입력
+
+* istream - ifstream
+* ostream - ofstream 
+* ifstream과 ofstream을 모두 포함하는 라이브러리 :  fstream 
+
+```cpp
+#include <fstream>
+#include <iostream>
+#include <string>
+
+int main() {
+    std::ifstream in("test.txt");
+    std::string s;
+
+    if (in.is_open()) {
+        in >> s;
+        std::cout << "입력 받은 문자열 :: " << s << std::endl;
+    } else {
+        std::cout << "not found file" << std::endl;
+    }
+    return 0;
+}
+```
+
+* is_open : istream에 없고, ifstream에서 상속받으면서 추가된 함수
+    + 파일이 열렸는지 유무를 리턴
+    + true : file이 있는 경우
+    + fail : file이 없는 경우
+    + 일반적인 경우, ifstream객체의 소멸자에서 자동으로 파일을 close 해줌
+
+* is_open에 대해 ifstream 소멸자에서 close되지 않는 경우
+    + std::ifstream 객체를 재사용 하는 경우
+        - close() 후 open()을 이용하여 is_open() 순으로 객체 재사용
+
+```cpp
+#include <fstream>
+#include <iostream>
+#include <string>
+
+int main() {
+  std::ifstream in("test.txt");
+  std::string s;
+
+  if (in.is_open()) {
+    in >> s;
+    std::cout << "입력 받은 문자열 :: " << s << std::endl;
+  } else {
+    std::cout << "파일을 찾을 수 없습니다!" << std::endl;
+  }
+
+  in.close();
+  in.open("other.txt");
+
+  if (in.is_open()) {
+    in >> s;
+    std::cout << "입력 받은 문자열 :: " << s << std::endl;
+  } else {
+    std::cout << "파일을 찾을 수 없습니다!" << std::endl;
+  }
+
+  return 0;
+}
+```
+
+* 이 외에 파일 전체 읽기 / 파일의 내용을 한줄 씩 읽기 등을 제공
 
 
+## ofstream을 이용한 파일 출력
+
+* std::ofstream 
+    + ios::binary : binary 형태로 
+    + ios::app : 기존 파일의 내용 뒤에 붙여넣기
+    + ios::ate : 자동으로 파일 끝에서부터 읽기와 쓰기 수행 (기존 파일 내용을 보존하지 않음)
+    + ios::trunc : 파일 스트림을 열면 기존 내용을 모두 삭제 (default)
+    + ios::in, std::ios::out : 파일에 입력할지, 출력할지 지정
+        - ifstream과 ofstream 객체를 생성 시, 지정되어 있음 
+
+```cpp
+#include <fstream>
+#include <iostream>
+
+int main() {
+  std::ofstream out("test.txt");  // 기존 내용 삭제 후 새로 쓰기
+  std::ofstream outa("test.txt", std::ios::app);  // 기존 파일의 내용에 append 
+
+  if (out.is_open()) {
+    out << "이걸 쓰자~~";
+  }
+
+  if (out2.is_open()) {
+      out2 << "덧붙이기";
+  }
+
+  return 0;
+}
+```
+
+## std::ofstream 연산자 오버로딩
+
+
+
+```cpp
+#include <fstream>
+#include <iostream>
+#include <string>
+
+class Human {
+  std::string name;
+  int age;
+
+ public:
+  Human(const std::string& name, int age) : name(name), age(age) {}
+  std::string get_info() {
+    return "Name :: " + name + " / Age :: " + std::to_string(age);
+  }
+
+  friend std::ofstream& operator<<(std::ofstream& o, Human& h);
+};
+
+std::ofstream& operator<<(std::ofstream& o, Human& h) {
+  o << h.get_info();
+  return o;
+}
+
+int main() {
+  // 파일 쓰기 준비
+  std::ofstream out("test.txt");
+
+  Human h("이재범", 60);
+  out << h << std::endl;
+
+  return 0;
+}
+```
