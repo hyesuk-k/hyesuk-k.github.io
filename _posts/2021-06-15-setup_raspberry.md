@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-06-15
-last_modified_at: 2021-07-10
+last_modified_at: 2021-07-29
 ---
 
 * 참고 사이트
@@ -164,7 +164,9 @@ IM_CONFIG_DEFAULT_MODE=fcitx 로 변경 후 저장
 # 6. 원격접속 설정
 
 ## 6-1. xrdp를 이용한 Raspberry Pi 원격 접속하기
-  
+
+* 결론 : vnc-server 제거 및 xrdp 설치. tightvncserver설치 / 고정 IP 설정은 선택
+
 * tightvncserver/xrdp 설치
 
 ```
