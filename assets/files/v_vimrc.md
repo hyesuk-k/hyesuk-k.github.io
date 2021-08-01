@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
+set ts=2
+set sw=2
+
+set ai
+set ci
+set si
+
+set hlsearch
+set ic
+set scs
+set nu
+
+colorscheme default
+
+set tags=./tags;/
+set tagbsearch
+set fileencoding=korea
+set fileencodings=ubs-bom, utf-8, korea
+
+set nocompatible
 
 filetype off    " required
 
@@ -50,3 +69,19 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|public$\|log$\|tmp$\|vendor$', 
   \ 'file': '\v\.(exe|so|dll)$' 
 \ }
+
+
+"==grep=="
+func! GrepCHPP()
+  let sm=expand("<cword>")
+  exe "!grep -rn " .sm " --include=*.{cc,cpp,h,hh,hpp}"
+endfunc
+nmap ,ll :call GrepCHPP() <CR>
+
+func! GrepHPP()
+  let sm=expand("<cword>")
+  exe "!grep -rn " .sm " --include=*.{h,hh,hpp}"
+endfunc
+nmap ,lh :call GrepHPP() <CR>
+
+nmap <F4> :qa!<CR>

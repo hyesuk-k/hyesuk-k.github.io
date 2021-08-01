@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-30
-last_modified_at: 2021-07-30
+last_modified_at: 2021-08-01
 ---
 
 * raspberry pi os format 후 세팅 기념ㅠㅠㅠㅠㅠ
@@ -22,6 +22,7 @@ last_modified_at: 2021-07-30
 
 * vim
     + 이전 vim_settings 포스팅 [참고](https://hyesukk.github.io/dev_utils/vim_settings/)
+    + colorscheme 변경하기 (default / )
 * tmux
     + 세션 내 마우스 스크롤 기능
         - default : ctrl + b +[ 및 q
