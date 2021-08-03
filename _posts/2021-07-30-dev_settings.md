@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-30
-last_modified_at: 2021-08-01
+last_modified_at: 2021-08-03
 ---
 
 * raspberry pi os format 후 세팅 기념ㅠㅠㅠㅠㅠ
@@ -23,6 +23,9 @@ last_modified_at: 2021-08-01
 * vim
     + 이전 vim_settings 포스팅 [참고](https://hyesukk.github.io/dev_utils/vim_settings/)
     + colorscheme 변경하기 (default / )
+* putty vim에서 방향키 동작 안할 때 (keyboard : VT100+ 설정)
+    + vi ~/.exrc
+    + 추가 후 저장 : set nocp
 * tmux
     + 세션 내 마우스 스크롤 기능
         - default : ctrl + b +[ 및 q
@@ -150,3 +153,39 @@ source ~/.bashrc
 ```
 sudo apt install fonts-nanum fonts-nanum-coding -y
 ```
+
+# samba
+
+* samba 설치 및 설정
+
+```
+sudo apt-get install -y samba
+sudo smbpasswd -a <userid>
+
+insert password: 
+
+sudo vi /etc/samba/smb.conf
+
+---
+ubuntu 20.04 : 주석 해제 및 read only 설정을 yes -> no로 변경 
+pi : 중간에 smb.conf 설정 변경 물어보면서 주석은 해제됨,  read only 는 no로 변경 필요
+
+[homes]
+  comment = Home Directories
+  browseable = no
+  read only = no
+  valid users = %s
+---
+
+sudo service smbd restart
+
+sudo pdbedit -L -v
+추가한 userid 정보 확인
+```
+
+* windows + R 키에서 \\ip\\<userid> 로 접속 가능
+  + pi에는 userid 떼고 접속 가능
+  + window10 > ubuntu20.04 접근 시, 조직의 보안 정책에서 인증되지 않은 게스트 액세스를 차단 ~~~
+    - [제어판-프로그램-Windows 기능 켜기/끄기] : smb 관련 전부 체크
+    - windows + R 키 : gpedit.msg : 컴퓨터구성 -> 관리 템플릿 -> 네트워크 -> Lanman 워크스테이션 -> 보안되지 않은 게스트 로그온 사용 설정 
+    - 재부팅...
