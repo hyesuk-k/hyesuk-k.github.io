@@ -18,7 +18,7 @@ last_modified_at: 2021-08-03
 * raspberry pi os format 후 세팅 기념ㅠㅠㅠㅠㅠ
 * 필요 시, 추가 및 수정 예정...
 
-# utils 
+# utils
 
 * vim
     + 이전 vim_settings 포스팅 [참고](https://hyesukk.github.io/dev_utils/vim_settings/)
@@ -46,7 +46,7 @@ set -g mouse on
 set -g terminal-overrides 'xterm*:smcup@:rmcup@'
 ```
 
-# Configuration Management
+# Configuration Management (GIT / TIG / etc...)
 
 * git과 tig 설치
 
@@ -57,13 +57,17 @@ sudo apt-get install -y git-all tig
 
 git config --global user.name (hyesukk)
 git config --global user.mail
+```
 
-# commit editor를 vim으로 변경
+* commit editor를 vim으로 변경
 
+```
 git config --global core.editor "vim"
+```
 
-# git commit message template
+* git commit message template
 
+```
 vi ~/.gitmessage.txt
 
 ----
@@ -89,6 +93,42 @@ git config --global commit.template ~/.gitmessage.txt
 
 * tig설정
     + ~/.tigrc 필요 시, 
+
+* ~/.bashrc 설정 추가 (혹은 ~/.bash_aliases)
+
+```
+if [ -f ~/bash/git ]; then
+  . ~/bash/git
+fi
+```
+
+* ~/bash/git 내용
+
+```
+# Terminal colours (after installing GNU coreutils) 
+
+NM="\[\033[0;38m\]"  # means no background and white lines 
+GR="\[\033[0;90m\]"  # dark grey 
+HI="\[\033[0;37m\]"  # change this for letter colors 
+HII="\[\033[0;31m\]" # change this for letter colors 
+SI="\[\033[0;33m\]"  # this is for the current directory 
+IN="\[\033[0m\]" 
+COLOR_RED="\033[0;31m" 
+COLOR_YELLOW="\033[0;33m" 
+COLOR_GREEN="\033[0;32m" \
+COLOR_OCHRE="\033[38;5;95m" 
+COLOR_BLUE="\033[0;34m" 
+COLOR_WHITE="\033[0;37m" 
+COLOR_RESET="\033[0m" 
+
+parse_git_branch() { 
+          git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1 /' 
+} 
+
+#export PS1="$NM[ $HI\u $HII\h $SI\w$NM ] $IN" 
+export PS1="$HII\h $SI\w$GR\$(parse_git_branch)$NM] $IN"
+```
+
 
 # compile / build
 
@@ -189,3 +229,17 @@ sudo pdbedit -L -v
     - [제어판-프로그램-Windows 기능 켜기/끄기] : smb 관련 전부 체크
     - windows + R 키 : gpedit.msg : 컴퓨터구성 -> 관리 템플릿 -> 네트워크 -> Lanman 워크스테이션 -> 보안되지 않은 게스트 로그온 사용 설정 
     - 재부팅...
+
+# putty
+
+* keyboard 설정 (Function key 등등)
+  + echo $TERM 으로 서버 터미널 에뮬 확인
+    - xterm : Terminal -> Keyboard -> The Function keys and keypad 에서 Xterm R6설정
+  ```
+  khs-dl ~/Workspace/~~~ master ] echo $TERM
+  xterm
+  ```
+
+* backspace key
+  + Terminal -> Keyboard -> The Backspace key : Control-H
+

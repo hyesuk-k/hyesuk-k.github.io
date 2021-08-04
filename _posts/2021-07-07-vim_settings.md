@@ -13,7 +13,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-07
-last_modified_at: 2021-07-10
+last_modified_at: 2021-08-04
 ---
 
 * Ubuntu 20.04 LTS 기준으로 설정
@@ -102,7 +102,8 @@ cscope -i cscope.files
 * mkcscope.sh 권한 수정
 
 ```
-sudo chmod +x mkcscope.sh
+sudo chmod +755 mkcscope.sh
+sudo mv mkcscope.sh /usr/bin
 ```
 
 * ~/.vimrc 수정

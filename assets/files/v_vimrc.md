@@ -11,8 +11,10 @@ set scs
 set nu
 
 colorscheme default
+if has ("syntax")
+  syntax on
+endif
 
-set tags=./tags;/
 set tagbsearch
 set fileencoding=korea
 set fileencodings=ubs-bom, utf-8, korea
@@ -20,6 +22,19 @@ set fileencodings=ubs-bom, utf-8, korea
 set nocompatible
 
 filetype off    " required
+
+"set tags
+set tags=./tags;/
+"set tags += ./tags, tags
+"set tags += ./tags,../tags,../../tags,tags
+
+"set cscope add cscope.out
+set nocsverb
+
+if filereadable("./cscope.out")
+  cs add ./cscope.out
+
+set csverb
 
 " set the runtime path to include Vundle and initialize 
 
@@ -46,17 +61,17 @@ filetype plugin indent on    " required
 
 " see :h vundle for more details or wiki for FAQ 
 
-" nerdtree : use F8 func key for ON/OFF
-nmap <F8> :NERDTreeToggle<CR> 
-let g:NERDTreeWinPos = "right"
-
 " taglist-plus : use F7 func key for ON/OFF
-nmap <F7> :TlistToggle<CR> 
+nmap <F9> :TlistToggle<CR> 
 let Tlist_Ctags_Cmd = "/usr/bin/ctags" 
 let Tlist_Inc_Winwidth = 0 
 let Tlist_Exit_OnlyWindow = 0 
 let Tlist_Auto_Open = 0 
 let Tlist_Use_Left_Window = 1 
+
+" nerdtree : use F8 func key for ON/OFF
+nmap <F10> :NERDTreeToggle<CR> 
+let g:NERDTreeWinPos = "right"
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1 " turn on buffer list 
