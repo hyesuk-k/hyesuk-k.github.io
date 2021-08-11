@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-30
-last_modified_at: 2021-08-03
+last_modified_at: 2021-08-11
 ---
 
 * raspberry pi os format 후 세팅 기념ㅠㅠㅠㅠㅠ
@@ -28,8 +28,11 @@ last_modified_at: 2021-08-03
     + 추가 후 저장 : set nocp
 * tmux
     + 세션 내 마우스 스크롤 기능
-        - default : ctrl + b +[ 및 q
-        - custom : ~/.tmux.conf
+      - default   : ctrl + b +[ 및 q
+      - custom    : ~/.tmux.conf
+    + 이름 변경
+      - 세션 이름 변경    : ctrl + b + $
+      - 윈도우 이름 변경  : ctrl + b + ,
 
 ```
 sudo apt-get install -y vim tmux
