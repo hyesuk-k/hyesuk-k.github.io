@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-30
-last_modified_at: 2021-08-11
+last_modified_at: 2021-08-19
 ---
 
 * raspberry pi os format 후 세팅 기념ㅠㅠㅠㅠㅠ
@@ -199,32 +199,67 @@ sudo apt install fonts-nanum fonts-nanum-coding -y
 
 # samba
 
-* samba 설치 및 설정
+## samba 설치
 
 ```
 sudo apt-get install -y samba
 sudo smbpasswd -a <userid>
 
 insert password: 
+```
 
+## samba 설정
+
+* home dir 를 공유 폴더로 설정 시,
+  + 꼭 반드시 valid users 항목 추가 필요
+  + 로그인 해야 접속 가능하게
+
+```
 sudo vi /etc/samba/smb.conf
+```
 
----
-ubuntu 20.04 : 주석 해제 및 read only 설정을 yes -> no로 변경 
-pi : 중간에 smb.conf 설정 변경 물어보면서 주석은 해제됨,  read only 는 no로 변경 필요
+* ubuntu 20.04
+  +주석 해제 및 smb.conf 파일 내용 추가 필요
+  + 
 
+```
 [homes]
   comment = Home Directories
   browseable = no
-  read only = no
-  valid users = %s
+  read only = no 혹은 writable = yes
+# 이거 안하고 public = on 하면 로그인 없이 바로 접속 가능
+  valid users = %S
+  create mask = 0700
+  directory mask = 0700
+# home dir
+  path = /home/계정명
 ---
 
 sudo service smbd restart
 
-sudo pdbedit -L -v
-추가한 userid 정보 확인
 ```
+
+* pi
+  + 중간에 smb.conf 설정 변경 물어보면서 주석은 해제됨
+  + read only 는 no로 변경 필요
+
+
+```
+[homes]
+  comment = Home Directories
+  browseable = no
+  read only = no
+  valid users = %S
+---
+
+sudo service smbd restart
+
+```
+
+* sudo pdbedit -L -v
+* 추가한 userid 정보 확인
+
+## samba 접속
 
 * windows + R 키에서 \\ip\\<userid> 로 접속 가능
   + pi에는 userid 떼고 접속 가능
