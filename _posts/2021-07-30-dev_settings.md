@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-30
-last_modified_at: 2021-08-19
+last_modified_at: 2021-08-23
 ---
 
 * raspberry pi os format 후 세팅 기념ㅠㅠㅠㅠㅠ
@@ -277,7 +277,15 @@ sudo service smbd restart
   khs-dl ~/Workspace/~~~ master ] echo $TERM
   xterm
   ```
+    - 숫자키 적용 안될 때 : Terminal -> Features -> "Disable application keypad mode" 체크
 
 * backspace key
   + Terminal -> Keyboard -> The Backspace key : Control-H
 
+
+
+* 설정 백업 및 적용
+  + 레지스트리 편집기를 이용해 백업하기
+    - 컴퓨터\HKEY_CURRENT_USER\SOFTWARE\SimonTatham 
+    - 내보내기
+  + 적용하고 싶은 컴퓨터에서 백업된 레지스트리 실행
