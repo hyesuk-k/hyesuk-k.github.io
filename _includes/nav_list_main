@@ -37,6 +37,13 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "network" %}
+                        <li><a href="/categories/cpp" class="">Network ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         <span class="nav__sub-title">AI</span>
             <ul>
                 {% for category in site.categories %}
