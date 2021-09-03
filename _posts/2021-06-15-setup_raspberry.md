@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-06-15
-last_modified_at: 2021-07-29
+last_modified_at: 2021-09-03
 ---
 
 * 참고 사이트
@@ -193,9 +193,9 @@ $ sudo /etc/init.d/networking restart
 
 * reboot!
 
-## 6-3. 원격 데스킅톱 (in Windows)
+## 6-3. 원격 데스크톱 (in Windows)
 
-* 실패함
+* 실패한 경우
 
 ![Image-Failed remote]({{"/assets/img/rpi/rpi_vnc_fail.PNG"}})
 
@@ -219,6 +219,25 @@ $ vncserver
 * id : pi / pass word : 변경한 비밀번호로 재접속 시도
 
 >> 성공!
+
+## 6-4. ssh에서 와이파이 연결 설정하기
+
+* wlan0 확인 및 설정
+
+```
+ifconfig wlan0
+
+sudo vi /etc/wpa_supplicant/wpa_supplicant.conf
+
+>> key_mgmt는 환경 설정 방법에 따라 입력해야 함
+network={
+	ssid="wifi-이름"
+	psk="wifi-비밀번호"
+	key_mgmt=WPA-PSK
+}
+
+sudo reboot
+```
 
 # 7. 개발 환경 구축
 
