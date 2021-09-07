@@ -170,3 +170,24 @@ int main() {
 }
 ```
 
+## 가변 길이 template
+
+```cpp
+template <typename T, typename... Types>
+```
+
+* template parameter pack
+  + typename 뒤에 ... 를 의미
+  + 0개 이상의 템플릿 인자를 나타냄
+  + 처음 T 외에 나머지 인자들은 전부 Types가 나타냄
+
+
+* example
+
+```cpp
+template <typename T, typename... Types>
+void print(T arg, Types... args) {
+  std::cout << arg << ", ";
+  print(args...);
+}
+```
