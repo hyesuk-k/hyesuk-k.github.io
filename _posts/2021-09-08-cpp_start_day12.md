@@ -28,6 +28,7 @@ last_modified_at: 2021-09-08
   + C++의 경우, template을 활용하므로 TMP라고 부름
 
 * TMP의 활용
+
 ```cpp
 template <int N>
 struct Factorial {
