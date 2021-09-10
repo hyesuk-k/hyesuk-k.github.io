@@ -13,7 +13,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-09-08
-last_modified_at: 2021-09-08
+last_modified_at: 2021-09-10
 
 ---
 
@@ -21,13 +21,16 @@ last_modified_at: 2021-09-08
 
 # Template Meta Programming (TMP)
 
-* type은 어떠한 객체에 무엇을 저장하느냐를 지정하기 위해 사용했었음
-* template을 사용하면, 객체를 생성하지 않더라도 type에 값을 부여할 수 있고 그 type을 이용하여 연산을 할 수 있음
-* type은 반드시 compile time에 확정되어야 하므로, compile time에 연산이 종료됨
-* Meta Programming : type을 가지고 compile time에 생성되는 코드로 프로그래밍 하는 것
-  + C++의 경우, template을 활용하므로 TMP라고 부름
+* template을 사용하는 프로그래밍 기법
+* 컴파일러에게 프로그램의 코드를 생성하게 함 (compile time에 결정하도록 하여 run time 시의 계산을 줄여줌)
+* TMP
+  + type은 어떠한 객체에 무엇을 저장하느냐를 지정하기 위해 사용했었음
+  + template을 사용하면, 객체를 생성하지 않더라도 type에 값을 부여할 수 있고 그 type을 이용하여 연산을 할 수 있음
+  + type은 반드시 compile time에 확정되어야 하므로, compile time에 연산이 종료됨
+  + Meta Programming : type을 가지고 compile time에 생성되는 코드로 프로그래밍 하는 것
+    - C++의 경우, template을 활용하므로 TMP라고 부름
 
-* TMP의 활용
+## TMP의 활용
 
 ```cpp
 template <int N>
@@ -57,6 +60,16 @@ int main() {
   + 객체에 사용되는 경우 (객체의 상수화), 객체의 데이터를 변환하지 않음을 의미
 * static const
   + 고정해놓고 함수 내에서만 사용할 상수를 선언할 용도로 사용함
+
+
+## Generic programming
+
+* [참고](https://wikidocs.net/491)
+* 정적 다형성
+* template을 이용한 프로그래밍
+* 자료형이 확정되지 않아도 클래스나 함수를 생성할 수 있음
+* type에 상관없이 암시적 다형성을 이용하여 동작할 수 있음
+* 주로 STL
 
 
 # auto keywoard
