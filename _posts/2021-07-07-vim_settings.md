@@ -13,7 +13,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-07
-last_modified_at: 2021-08-04
+last_modified_at: 2021-09-12
 ---
 
 * Ubuntu 20.04 LTS 기준으로 설정
@@ -175,5 +175,43 @@ grep <옵션> <찾을 문자열> --include=*.{cpp,cc,hh,h}
 혹은
 grep <옵션> <찾을 문자열> */*.{cc,h}
 // 실행한 위치에서만 찾음
+```
+
+## grep 활용
+
+* 특정 문자열을 단어 단위로 검색
+
+```
+grep -w "Word" FILE.txt
+
+Word
+```
+
+* 문자열이 포함된 파일명을 표기
+
+```
+grep -H "aaa" *
+
+a.txt: aaa
+b.txt: aaa
+c.txt: aaa
+```
+
+* 정규식
+
+```
+grep -E "a|b|c" *
+-> a or b or c 가 포함된 파일을 찾아라
+```
+
+* with pipe 
+
+```
+ps -ef | grep "dump"
+# 현재 프로세스에서 "dump" 문자열을 포함한 라인을 표기
+
+ss -t4l | grep "8080"
+netstat | grep "tcp" | grep "8080"
+
 ```
 
