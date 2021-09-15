@@ -59,6 +59,14 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+        <span class="nav__sub-title"> Computer Architecture </span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "CA" %}
+                        <li><a href="/categories/CA" class="">컴퓨터 구조 ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         <span class="nav__sub-title">Coding Test</span>
             <ul>
                 {% for category in site.categories %}
@@ -93,6 +101,13 @@
                 {% for category in site.categories %}
                     {% if category[0] == "illust" %}
                         <li><a href="/categories/illust" class="">Illust ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "etc" %}
+                        <li><a href="/categories/etc" class="">etc ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
