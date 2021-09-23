@@ -7,13 +7,15 @@ categories:
 tags:
   - dev_utils
   - vim
-  - setup
+  - VimVundle
+  - cscope
+  - ctags
 
 toc: true
 toc_sticky: true
 
 date: 2021-07-07
-last_modified_at: 2021-09-12
+last_modified_at: 2021-09-23
 ---
 
 * Ubuntu 20.04 LTS 기준으로 설정
@@ -82,26 +84,32 @@ set tagbsearch
 # cscope
 
 * [cscope for vim](http://cscope.sourceforge.net/)
+
 * cscope 설치
+
 ```
 sudo apt install cscope
 ```
 
-* mkcscope.sh 생성
+* cscope.files 생성하기 (혹은 다른 이름도 가능 cscope -i <파일명>)
+* -name 뒤에 확장자 추가하기
+    + gcc에서 지원하는 c++  파일 확장자 들
+        - *.c, *.C, *.cc, *.cpp, *.CPP, *.c++, *.cp, *.cxx
+        - *.h, *.hpp, *.hh, *.hxx
+* -o (OR expression을 의미)
+    + [find_명령어_사용법](https://recipes4dev.tistory.com/156)
+
+* mkcscope.sh 생성 및 /usr/bin 으로 이동
 
 ```
 #!/bin/sh
 
 rm -rf cscope.files cscope.files
 
-find . \( -name '*.c' -o -name '*.cpp' -o -name '*.cc' -o -name '*.h' -o -name '*.s' -o -name '*.S' \) -print>cscope.files
+find . \( -name '*.c' -o -name '*.cpp' -o -name '*.cc' -o -name '*.h' -o -name '*.hh' -o -name '*.H' \) -print>cscope.files
 
 cscope -i cscope.files
-```
 
-* mkcscope.sh 권한 수정
-
-```
 sudo chmod +755 mkcscope.sh
 sudo mv mkcscope.sh /usr/bin
 ```
@@ -124,6 +132,19 @@ set csverb
 
 * cscope.out 파일 생성
 * 파일 이동 (/usr/~~~/로 이동)
+
+## cscope subsequent 
+
+* 0-9a-zA-Z
+    - 지정된 줄 번호로 연결된 파일 수정
+* <Space>
+    - 다음 페이지 확인
+* <Tab>
+    - 메뉴와 일치하는 줄 목록을 보여줌
+* <Up>
+    - 이전 항목으로
+* <Down>
+    - 다음 항목으로
 
 
 # Vundle
