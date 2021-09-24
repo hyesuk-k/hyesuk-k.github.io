@@ -15,7 +15,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-07
-last_modified_at: 2021-09-23
+last_modified_at: 2021-09-25
 ---
 
 * Ubuntu 20.04 LTS 기준으로 설정
@@ -60,6 +60,97 @@ filetype off
 :options
 :set all
 ```
+
+# YouCompleteMe
+
+* [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe)
+* [UsingVundle](https://stackoverflow.com/questions/47956670/how-to-install-plugins-in-vim-using-vundle)
+
+## Vundle을 이용한 세팅 방법
+
+* 위 기본 개발 환경 있음 (g++, vim, cmake, python, Vundle 설치되어 있는 상태)
+*  ~/.vimrc 에 Plugin 추가
+
+```
+call vundle#begin()
+. . .
+Plugin 'Valloric/YouCompleteMe'
+. . .
+call vundle#end()
+```
+
+* vim 열려 있는 상태에서 plugin install 수행
+
+```
+:source %
+:PluginInstall
+```
+
+* plugin install "Done!" 메시지 확인
+![DoneVundleYCM]({{"/assets/img/tool/ycm_install.png"}})
+
+## YCM Compile 
+
+* Quick start, installing all completers
+* Install YCM plugin via Vundle
+* Install cmake, vim and python
+* Install mono-complete, go, node, java and npm
+* Compile YCM
+
+```
+sudo apt-get install -y build-essential cmake vim-nox python3-dev
+sudo apt-get install -y mono-complete golang nodejs default-jdk npm
+
+cd ~/.vim/bundle/YouCompleteMe
+python3 install.py --all
+```
+
+## 주의! VIM 버전 check
+
+! [참고](https://chusiang.medium.com/install-the-vim-8-0-and-youcompleteme-with-make-on-centos-7-4-1573ad780953)
+
+* 설치 후 vim으로 문서 열었을 때, 지원하는 최소 vim 버전이 안맞는 경우 발생
+
+```
+vi a.cc
+YouCompleteMe unavailable: requires Vim 8.1.2269+.
+
+설치된 vim 버전 확인(vim --version 은 8.1까지만 나와서 vim 실행시킴)
+8.1.1401
+```
+
+* vim upgrade 실행
+
+```
+sudo apt-get upgrade vim
+
+sudo add-apt-repository ppa:jonathonf/vim
+sudo apt-get update
+sudo apt-get install vim
+```
+
+* 그러나 raspberri pi는 add-apt-repository 가 없음ㅠ
+    + [찾음](https://itsfoss.com/add-apt-repository-command-not-found/)
+    + [이후 vim 8.2 설치](https://websetnet.net/vim-8-2-released-how-to-install-vim-in-ubuntu-linux/)
+
+```
+sudo apt-get install -y software-properties-common
+sudo apt-get update
+```
+
+
+* vim을 수동으로 설치한다.
+
+```
+git clone https://github.com/vim/vim
+./configure
+make -jX && make install
+```
+
+## raspberry-pi용
+
+!참고 : https://roboticsbackend.com/install-use-vim-raspberry-pi/
+
 
 # ctags
 
