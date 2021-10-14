@@ -14,7 +14,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-09-01
-last_modified_at: 2021-09-01
+last_modified_at: 2021-10-14
 
 ---
 
@@ -76,11 +76,47 @@ signal(SIGPIPE, signal_callback_handler);
 
 ### CASE 2. SIGPIPE signal IGNORE 처리 시,
 
+* signal 함수 이용
+
 ```cpp
 #include <signal.h>
 
 signal(SIGPIPE, SIG_IGN);
 ```
+
+* sigignore 함수 이용
+
+```cpp
+#include <signal.h>
+
+sigignore(SIGPIPE);
+```
+
+* sigaction 함수 이용
+
+```cpp
+#include <signal.h>
+
+int main() {
+  struct sigaction act;
+
+  // signal이 캐치되면 수행할 동작
+  // SIG_IGN 외에 함수 설정 가능
+  act.sa_handler = SIG_IGN;
+
+  // signal 처리하는 동안 block 처리할 signal 집합 -> 모든 signal block 제외
+  sigemptyset(&act.sa_mask);
+
+  // 별도 option 설정 안함
+  act.sa_flags = 0;
+
+  // sigpipe signal이 act로 처리되도록 설정
+  sigaction(SIGPIPE, &act, NULL);
+
+  return 0;
+}
+```
+
 
 ### CASE 3. gdb에서도 SIGPIPE 발생 무시
 
@@ -91,7 +127,8 @@ handle SIGPIPE nostop noprint pass
 ```
 
 * 계정의 home dir에 .gdbinit 생성 후 위 내용 추가
-    + default로 SIGPIPE 무시
+    + default로 SIGPIPE 무시, SIGPIPE print 하지 않음
+    + print는 하도록 변경하려면 nostop pass pass 로 변경하기
 
 
 ## Refs
