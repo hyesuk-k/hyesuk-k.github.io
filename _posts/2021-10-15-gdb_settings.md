@@ -13,7 +13,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-10-15
-last_modified_at: 2021-10-16
+last_modified_at: 2021-10-21
 
 ---
 
@@ -64,6 +64,40 @@ set print elements 0
 * Remote debugging
 * [GDB_Server](https://sourceware.org/gdb/current/onlinedocs/gdb/Server.html#Server)
 
+## gdbserver 사용법
+
+* target system에 gdbserver 설치
+
+```
+sudo apt-get install gdbserver
+```
+
+* gdbserver 실행
+
+```
+gdbserver localhost:<listening port> <binary>
+```
+
+* src 위치에서 gdb 실행
+
+```
+gdb
+```
+
+* target 접속 (2가지)
+
+```
+(gdb) target remote <ip>:<listening port>
+
+OR
+
+ssh ternnuling을 이용한 port-forward
+-> target에 ssh로 직접 연결 불가, 중간에 다른 장비를 거쳐가야하는 경우
+
+$ ssh -J <중간장비>@<중간장비ip> -L <port>:localhost:<port> <target_name>@<target ip>
+
+(gdb) target extended_remote :<port>
+```
 
 # GDB TUI
 
@@ -82,6 +116,6 @@ $ gdb -q <execute file> -tui
 ### gdb 실행 중 단축키
 
 * Ctrl + x + a
-  - turn on / turn off 둘 다 가능
+  - turn on / off 둘 다 가능
 
 
