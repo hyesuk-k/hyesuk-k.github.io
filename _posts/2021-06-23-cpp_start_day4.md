@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-06-23
-last_modified_at: 2021-06-26
+last_modified_at: 2021-10-22
 
 ---
 
@@ -225,6 +225,22 @@ public:
 ```cpp
 ~(클래스의 이름)
 ```
+
+* 소멸자 규칙
+  + 소멸자의 이름 : __~클래스 이름__
+    - 클래스에 1개만 존재할 수 있음
+  + 매개변수가 없음
+  + 반환값이 없음
+  + 소멸자는 명시적으로 호출하는 경우가 없다.
+
+* 생명 주기
+  + 객체가 생성되는 시점에 생성자를, 소멸되는 시점에는 소멸자를 호출한다.
+
+* C++ RAII 디자인 패턴 (Resource Acquisition Is Initialization)
+  + 클래스 객체의 생명 주기 (생성자와 소멸자를 이용한)
+> 추가 공부 필요
+> 참고 : [RAII](https://en.cppreference.com/w/cpp/language/raii)
+
 
 ### 복사 생성자
 
