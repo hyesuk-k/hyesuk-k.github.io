@@ -101,3 +101,6 @@ endfunc
 nmap ,lh :call GrepHPP() <CR>
 
 nmap <F4> :qa!<CR>
+nmap <F2> :tabnew<CR>
+" move to the right tab
+nmap <BS> gt<CR>
