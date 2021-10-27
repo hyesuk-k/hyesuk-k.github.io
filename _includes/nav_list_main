@@ -67,11 +67,25 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title">Coding Test</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "Algorithm" %}
-                        <li><a href="/categories/algo" class="">알고리즘 구현 (with C++) ({{category[1].size}})</a></li>
+                        <li><a href="/categories/algo" class="">알고리즘({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        <span class="nav__sub-title">Coding Test</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "bj" %}
+                        <li><a href="/categories/bj" class="">BaekJoon (with C++) ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "programmers" %}
+                        <li><a href="/categories/programmers" class="">programmers (with C++) ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
