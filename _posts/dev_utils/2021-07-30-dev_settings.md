@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-30
-last_modified_at: 2021-08-23
+last_modified_at: 2021-11-03
 ---
 
 * raspberry pi os format 후 세팅 기념ㅠㅠㅠㅠㅠ
@@ -270,22 +270,31 @@ sudo service smbd restart
 
 # putty
 
-* keyboard 설정 (Function key 등등)
-  + echo $TERM 으로 서버 터미널 에뮬 확인
-    - xterm : Terminal -> Keyboard -> The Function keys and keypad 에서 Xterm R6설정
-  ```
+## keyboard 설정 (Function key 등등)
+
+* echo $TERM 으로 서버 터미널 에뮬 확인
+  + xterm : Terminal -> Keyboard -> The Function keys and keypad 에서 Xterm R6설정
+```
   khs-dl ~/Workspace/~~~ master ] echo $TERM
   xterm
-  ```
-    - 숫자키 적용 안될 때 : Terminal -> Features -> "Disable application keypad mode" 체크
+ ```
+  + 숫자키 적용 안될 때 : Terminal -> Features -> "Disable application keypad mode" 체크
 
 * backspace key
   + Terminal -> Keyboard -> The Backspace key : Control-H
 
 
 
-* 설정 백업 및 적용
-  + 레지스트리 편집기를 이용해 백업하기
-    - 컴퓨터\HKEY_CURRENT_USER\SOFTWARE\SimonTatham 
-    - 내보내기
-  + 적용하고 싶은 컴퓨터에서 백업된 레지스트리 실행
+## 설정 백업 및 적용
+
+* 레지스트리 편집기를 이용해 백업하기
+  + Windows + R 로 실행 열기
+  + regedit 입력 후 엔터
+  + 레지스트리 경로 : 컴퓨터\HKEY_CURRENT_USER\SOFTWARE\SimonTatham 
+  + SimonTatham 선택 후 내보내기
+* 적용하고 싶은 컴퓨터에서 백업된 레지스트리 실행
+
+## 기타 설정
+
+* timeout 조절
+  + Connection -> Seconds between keepalives (0 to turn off) : 초 단위로 설정 가능, 0 keepalive 사용하지 않음
