@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-30
-last_modified_at: 2021-11-03
+last_modified_at: 2021-11-05
 ---
 
 * raspberry pi os format 후 세팅 기념ㅠㅠㅠㅠㅠ
@@ -263,10 +263,22 @@ sudo service smbd restart
 
 * windows + R 키에서 \\ip\\<userid> 로 접속 가능
   + pi에는 userid 떼고 접속 가능
-  + window10 > ubuntu20.04 접근 시, 조직의 보안 정책에서 인증되지 않은 게스트 액세스를 차단 ~~~
-    - [제어판-프로그램-Windows 기능 켜기/끄기] : smb 관련 전부 체크
-    - windows + R 키 : gpedit.msg : 컴퓨터구성 -> 관리 템플릿 -> 네트워크 -> Lanman 워크스테이션 -> 보안되지 않은 게스트 로그온 사용 설정 
-    - 재부팅...
+
+### Windows 10 설정
+
+* window10 > ubuntu20.04 접근 시, 조직의 보안 정책에서 인증되지 않은 게스트 액세스를 차단 ~~~
+  + [제어판-프로그램-Windows 기능 켜기/끄기] : smb 관련 전부 체크
+  + windows + R 키 : gpedit.msg : 컴퓨터구성 -> 관리 템플릿 -> 네트워크 -> Lanman 워크스테이션 -> 보안되지 않은 게스트 로그온 사용 설정 
+
+* 재부팅...
+
+### Windows 11 설정
+
+* [참고](https://techviewleo.com/install-and-configure-samba-share-on-windows/)
+
+* 제어판 > 네트워크 및 인터넷 > 네트워크 및 공유 센터 > 고급 공유 설정 변경
+  + 개인 > 파일 및 프린터 공유 > 파일 및 프린터 공유 켜기
+
 
 # putty
 
