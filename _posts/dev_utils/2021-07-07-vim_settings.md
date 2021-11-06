@@ -15,7 +15,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-07
-last_modified_at: 2021-09-25
+last_modified_at: 2021-11-06
 ---
 
 * Ubuntu 20.04 LTS 기준으로 설정
@@ -60,97 +60,6 @@ filetype off
 :options
 :set all
 ```
-
-# YouCompleteMe
-
-* [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe)
-* [UsingVundle](https://stackoverflow.com/questions/47956670/how-to-install-plugins-in-vim-using-vundle)
-
-## Vundle을 이용한 세팅 방법
-
-* 위 기본 개발 환경 있음 (g++, vim, cmake, python, Vundle 설치되어 있는 상태)
-*  ~/.vimrc 에 Plugin 추가
-
-```
-call vundle#begin()
-. . .
-Plugin 'Valloric/YouCompleteMe'
-. . .
-call vundle#end()
-```
-
-* vim 열려 있는 상태에서 plugin install 수행
-
-```
-:source %
-:PluginInstall
-```
-
-* plugin install "Done!" 메시지 확인
-![DoneVundleYCM]({{"/assets/img/tool/ycm_install.png"}})
-
-## YCM Compile 
-
-* Quick start, installing all completers
-* Install YCM plugin via Vundle
-* Install cmake, vim and python
-* Install mono-complete, go, node, java and npm
-* Compile YCM
-
-```
-sudo apt-get install -y build-essential cmake vim-nox python3-dev
-sudo apt-get install -y mono-complete golang nodejs default-jdk npm
-
-cd ~/.vim/bundle/YouCompleteMe
-python3 install.py --all
-```
-
-## 주의! VIM 버전 check
-
-! [참고](https://chusiang.medium.com/install-the-vim-8-0-and-youcompleteme-with-make-on-centos-7-4-1573ad780953)
-
-* 설치 후 vim으로 문서 열었을 때, 지원하는 최소 vim 버전이 안맞는 경우 발생
-
-```
-vi a.cc
-YouCompleteMe unavailable: requires Vim 8.1.2269+.
-
-설치된 vim 버전 확인(vim --version 은 8.1까지만 나와서 vim 실행시킴)
-8.1.1401
-```
-
-* vim upgrade 실행
-
-```
-sudo apt-get upgrade vim
-
-sudo add-apt-repository ppa:jonathonf/vim
-sudo apt-get update
-sudo apt-get install vim
-```
-
-* 그러나 raspberri pi는 add-apt-repository 가 없음ㅠ
-    + [찾음](https://itsfoss.com/add-apt-repository-command-not-found/)
-    + [이후 vim 8.2 설치](https://websetnet.net/vim-8-2-released-how-to-install-vim-in-ubuntu-linux/)
-
-```
-sudo apt-get install -y software-properties-common
-sudo apt-get update
-```
-
-
-* vim을 수동으로 설치한다.
-
-```
-git clone https://github.com/vim/vim
-./configure
-make -jX && make install
-```
-
-## raspberry-pi용
-
-!참고 : https://roboticsbackend.com/install-use-vim-raspberry-pi/
-
 
 # ctags
 
@@ -270,6 +179,204 @@ git clone https://github.com/ctrlpvim/ctrlp.vim.git ~/.vim/bundle/ctrlp.vim
     + [Ctrlp](http://ctrlpvim.github.io/ctrlp.vim/#installation)
 
 * [vundle for vimrc 확인](../../assets/files/v_vimrc.xml)
+
+
+# YouCompleteMe
+
+* [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe)
+* [UsingVundle](https://stackoverflow.com/questions/47956670/how-to-install-plugins-in-vim-using-vundle)
+
+> 이것저것 해보다가 결국 neovim + coc 로 가기로 함
+
+## Vundle을 이용한 세팅 방법
+
+* 위 기본 개발 환경 있음 (g++, vim, cmake, python, Vundle 설치되어 있는 상태)
+*  ~/.vimrc 에 Plugin 추가
+
+```
+call vundle#begin()
+. . .
+Plugin 'Yggdroot/indentLine'
+Plugin 'Valloric/YouCompleteMe'
+. . .
+call vundle#end()
+```
+
+* vim 열려 있는 상태에서 plugin install 수행
+
+```
+:source %
+:PluginInstall
+```
+
+* plugin install "Done!" 메시지 확인
+![DoneVundleYCM]({{"/assets/img/tool/ycm_install.png"}})
+
+## YCM Compile 
+
+* [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe)
+* Quick start, installing all completers
+* Install YCM plugin via Vundle
+* Install cmake, vim and python
+* Install mono-complete, go, node, java and npm
+* Compile YCM
+
+```
+sudo apt-get install -y build-essential cmake vim-nox python3-dev
+sudo apt-get install -y mono-complete golang nodejs default-jdk npm
+
+cd ~/.vim/bundle/YouCompleteMe
+python3 install.py --all
+```
+
+### 하위 버전 vim인 경우, YCM
+
+* gcc 계열 (+libclang) 과 go 언어에 대한 YCM 설치
+    + python2 가 없는 에러 발생 시, 3으로 설치
+    + 혹은 python3이 없다는 에러 발생 시 2로 설치
+    + 둘 다 없다면 ... python 설치하기!
+
+```
+$ sudo python3 ./install.py --clang-completer --go-completer
+```
+
+### 주의! VIM 버전 check
+
+! [참고](https://chusiang.medium.com/install-the-vim-8-0-and-youcompleteme-with-make-on-centos-7-4-1573ad780953)
+
+* 설치 후 vim으로 문서 열었을 때, 지원하는 최소 vim 버전이 안맞는 경우 발생
+
+```
+vi a.cc
+YouCompleteMe unavailable: requires Vim 8.1.2269+.
+
+설치된 vim 버전 확인(vim --version 은 8.1까지만 나와서 vim 실행시킴)
+8.1.1401
+```
+
+* vim upgrade 실행
+
+```
+sudo apt-get upgrade vim
+
+sudo add-apt-repository ppa:jonathonf/vim
+sudo apt-get update
+sudo apt-get install vim
+```
+
+* 그러나 raspberri pi는 add-apt-repository 가 없음ㅠ
+    + [찾음](https://itsfoss.com/add-apt-repository-command-not-found/)
+    + [이후 vim 8.2 설치](https://websetnet.net/vim-8-2-released-how-to-install-vim-in-ubuntu-linux/)
+
+```
+sudo apt-get install -y software-properties-common
+sudo apt-get update
+```
+
+
+* vim을 수동으로 설치해본다. >> YCM 사용 안할래...
+
+```
+git clone https://github.com/vim/vim
+./configure
+make -jX && make install
+```
+
+## raspberry-pi용 VIM
+
+!참고 : https://roboticsbackend.com/install-use-vim-raspberry-pi/
+
+# coc.nvim
+
+* [coc.nvim](https://github.com/neoclide/coc.nvim)
+* YCM과 다른 vim 자동 완성 툴
+
+## 설치 준비
+
+### NeoVim / Vim
+  
+* https://neovim.io/
+* 참고
+  + [NeoVim for Linux](https://github.com/neovim/neovim/wiki/Installing-Neovim#linux)
+  + [NeoVim for RaspberryPi](https://forums.raspberrypi.com/viewtopic.php?t=180325)
+
+
+* snipd 를 이용하여 nvim 설치
+
+```
+sudo apt install -y snapd
+sudo snap install --classic nvim
+nvim v0.5.0-dirty from neovim-snap (neovim-snap) installed
+
+pi@raspberrypi:~ ()$ nvim --version
+NVIM v0.5.0
+Build type: RelWithDebInfo
+...
+```
+
+#### nvim 을 위한 설정 (선택)
+
+* vim을 위한 설정 파일인 ~/.vimrc
+* nvim을 위한 설정 파일인 ~/init.vim
+
+
+### Node.js 설치
+
+* root 권한으로 실행
+
+```cpp
+curl -sL install-node.now.sh/lts | bash
+
+root@raspberrypi:/home/pi# curl -sL install-node.now.sh/lts | bash
+  Configuration
+> Version:  v16.13.0 (resolved from lts)
+> Prefix:   /usr/local
+> Platform: linux
+> Arch:     armv7l
+
+> Tarball URL: https://nodejs.org/dist/v16.13.0/node-v16.13.0-linux-armv7l.tar.gz
+? Install Node.js v16.13.0 to /usr/local? [yN] y
+> Installing Node.js, please wait…
+✓ Done
+```
+
+
+### 설치 언어에 따른 language server 설치
+
+* 참고 : https://github.com/neoclide/coc.nvim/wiki/Language-servers
+
+### yarn 설치
+
+* root 계정으로 실행하기
+
+```cpp
+curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+...
+
+> Successfully installed Yarn 1.22.15! Please open another terminal where the `yarn` command will now be available.
+```
+
+## 설치
+
+* coc.nvim의 Quick Start 참고
+* coc.nvim 의 [Install coc.nvim](https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim) 참고
+
+* 1. .vimrc 또는 init.vim 에 아래 내용 추가 (vim or nvim)
+
+```
+" Use release branch (recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Or build from source code by using yarn: https://yarnpkg.com
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+```
+
+* 2. restart Vim
+
+* 3. :PlugInstall 실행
+
+
+
 
 # grep
 
