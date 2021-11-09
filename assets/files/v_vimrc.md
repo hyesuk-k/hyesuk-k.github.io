@@ -13,11 +13,11 @@ set scs
 set nu
 set ruler
 
-set history=256
+set history=1000
 
 color desert
 if has ("syntax")
-        syntax on
+	syntax on
 endif
 
 set tags=./tags;/
@@ -42,6 +42,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Yggdroot/indentLine'
+Plugin 'Syntastic'  " check syntax
 "Plugin 'valloric/youcompleteme'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -81,6 +82,19 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$'
 \ }
 
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = "-std=c++17 -Wall -Wextra -Wpedantic"
+let g:syntastic_c_compiler_options = "-std=c17 -Wall -Wextra -Wpedantic"
 
 "==grep=="
 func! GrepCHPP()

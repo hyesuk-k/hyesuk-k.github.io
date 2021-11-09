@@ -15,7 +15,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-07
-last_modified_at: 2021-11-06
+last_modified_at: 2021-11-09
 ---
 
 * Ubuntu 20.04 LTS 기준으로 설정
@@ -177,6 +177,7 @@ git clone https://github.com/ctrlpvim/ctrlp.vim.git ~/.vim/bundle/ctrlp.vim
     + taglist-plus
     + vim-airline
     + [Ctrlp](http://ctrlpvim.github.io/ctrlp.vim/#installation)
+    + Syntastic : 문법 확인, 소스 열 때 문법 체크해서 좀 느려짐...관련 설정은 -Wall, Wextra, Wpedantic 으로 필요에 따라 끌 것
 
 * [vundle for vimrc 확인](../../assets/files/v_vimrc.xml)
 
