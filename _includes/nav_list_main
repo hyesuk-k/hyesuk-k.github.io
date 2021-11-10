@@ -84,6 +84,13 @@
         <span class="nav__sub-title">Coding Test</span>
             <ul>
                 {% for category in site.categories %}
+                    {% if category[0] == "ct" %}
+                        <li><a href="/categories/ct" class="">관련 자료 ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
                     {% if category[0] == "bj" %}
                         <li><a href="/categories/bj" class="">BaekJoon (with C++) ({{category[1].size}})</a></li>
                     {% endif %}
