@@ -13,7 +13,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-11-17
-last_modified_at: 2021-11-17
+last_modified_at: 2021-11-21
 
 ---
 
@@ -43,6 +43,7 @@ last_modified_at: 2021-11-17
 # set / multiset
 
 * 특정 key가 연관 컨테이너에 존재하는지 유무
+* 원소를 insert 시 자동 정렬됨
 * set : 중복된 원소가 존재하지 않음
 * multiset : 중복된 원소가 존재할 수 있음
 
@@ -84,6 +85,44 @@ int main() {
   } else {
     std::cout << findNum << " isn't in set" << std::endl;
   }
+
+  return 0;
+}
+
+```
+
+
+## multiset
+
+* 중복된 key값을 저장
+* lower_bound : http://www.cplusplus.com/reference/algorithm/lower_bound/
+* upper_bound : http://www.cplusplus.com/reference/algorithm/upper_bound/
+
+```cpp
+#include <iostream>
+#include <set>
+
+using namespace std;
+int main() {
+  multiset<int> ms;
+
+  ms.insert(10);
+  ms.insert(10);
+  ms.insert(20);
+  ms.insert(20);
+
+  multiset<int>::iterator it;
+  for (it = ms.begin() ; it != ms.end(); it++) {
+    cout << *it << " ";
+  }
+  cout << endl;
+
+  cout << "ms.count(10) : " << ms.count(10) << endl;
+  // 10이 몇 개 들어있는지 출력됨
+
+  cout << "10이 처음 나온 시작 : " << ms.lower_bound(10) << endl;
+  cout << "10의 마지막 위치 : " << ms.upper_bound(10) << endl;
+
 
   return 0;
 }
