@@ -13,7 +13,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-11-17
-last_modified_at: 2021-11-21
+last_modified_at: 2021-12-03
 
 ---
 
@@ -182,3 +182,42 @@ int main() {
   std::cout << "key의 value는? " << mlist["설날"] << std::endl;
 }
 ```
+
+## multimap
+
+- 중복된 key 값을 저장 가능
+- multimap의 경우, [] 연산자를 제공하지 않음
+- 중복된 key에 해당되는 value를 모두 확인할 때 : equal_range("key") 를 사용
+
+```cpp
+#include <iostream>
+#include <map>
+#include <string>
+
+using namespace std;
+
+int main(void) {
+  multimap<int, string> mm;
+  mm.insert(make_pair(1, "c"));
+  mm.insert(make_pair(1, "c++"));
+  mm.insert(make_pair(1, "c#"));
+  mm.insert(pair<int, string>(2, "java"));
+  mm.insert(pair<int, string>(3, "python"));
+
+  multimap<int, string>::iterator it;
+
+  for (it = mm.begin() ; it != mm.end() ; it++) {
+    cout << it->first << ", " << it->second << endl;
+  }
+
+  // print duplicate key (1)
+  for (it = mm.equal_range(1).first ; it != mm.equal_range(1).second ; it++) {
+    cout << it->first << ", " << it->second << endl;
+  }
+
+
+  return 0;
+}
+```
+
+
