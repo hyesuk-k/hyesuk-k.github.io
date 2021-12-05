@@ -13,7 +13,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-11-17
-last_modified_at: 2021-12-03
+last_modified_at: 2021-12-05
 
 ---
 
@@ -219,5 +219,34 @@ int main(void) {
   return 0;
 }
 ```
+
+# unordered_set / unordered_map
+
+* C++ 11에서 추가됨
+* 원소들이 정렬되어있지 않음
+* insert/erase/find 가 O(1) ~ O(N)으로 수행됨
+  + insert/find에 해시 함수를 사용함
+  + Hash collision이 발생하냐에 따라 평균 O(1), 최약의 경우 O(N)으로 수행됨
+ 
+* 최적화가 되어 있는 데이터라면, O(1)로 수행되는 unordered_set/map을 사용, 아니라면 O(logN)인 set/map을 사용
+
+※ Big-O 시간 복잡도
+> O(1) : 상수
+> O(log N)
+> O(N) : 선형
+> O(N logN)
+> O(N^2_) : Square
+
+
+```cpp 
+#include <unordered__set>
+#include <unordered_map>
+```
+
+* https://en.cppreference.com/w/cpp/container/unordered_set
+* https://en.cppreference.com/w/cpp/container/unordered_map
+
+
+
 
 
