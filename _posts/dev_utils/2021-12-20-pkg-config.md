@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-12-20
-last_modified_at: 2021-12-20
+last_modified_at: 2021-12-21
 ---
 
 * Linux 계열에서의 사용 기준 (ubuntu 20.04)
@@ -25,20 +25,44 @@ last_modified_at: 2021-12-20
   + C/C++ 컴파일러를 위한 매개변수
   + Linker를 위한 매개변수
   + 패키지 버전
-
+* gcc 혹은 g++ compile 시 flags들을 저장해둔 파일
 
 # pkg-config 간단 사용법
 
-
-# pkg-config 확인 방법
+## pkg-config 확인 방법
 
 * ex) openssl
 
 ```
-./config -fPIC --prefix=/usr/local/OpenSSL111m
+./config -fPIC --prefix=/usr/local/OpenSSL
+make
+make install
 ```
 
-* 
+* pc file 내용
+
+```
+vi /usr/local/OpenSSL/lib/pkgconfig/openssl.pc
+
+prefix=/usr/local/OpenSSL
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: OpenSSL
+Description: Secure Socket Layer and cryptography libraries and tools
+Version: 1.1.1l
+Requires: libssl libcrypto
+```
+
+
+## pkg-config 실행 방법
+
+```
+pkg-config --cflags <library 이름>
+
+```
+
 
 
 # ref
