@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-12-20
-last_modified_at: 2021-12-21
+last_modified_at: 2021-12-22
 ---
 
 * Linux 계열에서의 사용 기준 (ubuntu 20.04)
@@ -58,11 +58,25 @@ Requires: libssl libcrypto
 
 ## pkg-config 실행 방법
 
-```
+* cflags 옵션과 library 이름 넣기
+
+```cpp
 pkg-config --cflags <library 이름>
-
 ```
 
+
+# Issues
+
+* make install 이후 pkg-config에서 인식되지 않을 때, (혹은 바뀌지 않는 경우)
+* pkg-config의 default 위치 (/usr/lib)와 설치할 library 의 pkg-config의 default 위치가 상이한지 확인
+
+
+```
+cp /usr/local/lib/pkgconfig/*.pc /usr/local/pkgconfig
+
+> /usr/lib/pkgconfig 디렉토리에 *.pc 파일이 있는지 확인
+> open source에서 /usr/local/lib/pkgconfig 디렉토리 내 .pc 파일이 있다면 복사할 것
+```
 
 
 # ref
