@@ -15,7 +15,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-07
-last_modified_at: 2021-11-09
+last_modified_at: 2022-10-12
 ---
 
 * Ubuntu 20.04 LTS 기준으로 설정
@@ -106,6 +106,7 @@ sudo apt install cscope
 
 rm -rf cscope.files cscope.files
 
+#find `pwd` -name '*.[cChH]' > cscope.files
 find . \( -name '*.c' -o -name '*.cpp' -o -name '*.cc' -o -name '*.h' -o -name '*.hh' -o -name '*.H' \) -print>cscope.files
 
 cscope -i cscope.files
@@ -122,9 +123,9 @@ if filereadable("cscope.out")
     cs add cscope.out
 elseif filereadable("../cscope.out")
     cs add ../cscope.out
-" 아래 내용은 필요할 지 확인 필요, else 로 끝낼 수 있나?
-elseif filereadable("/usr/~~~/cscope.out")  " os 마다 다름
-    cs add /usr/~~~/cscope.out
+" 아래 내용은 필요할 지 확인 필요, else 로 끝낼 수 있나? - 있음 
+else
+    
 
 endif
 set csverb
@@ -146,6 +147,34 @@ set csverb
 * <Down>
     - 다음 항목으로
 
+## cscope 활용하기
+
+* cs find 명령어를 이용하여 symbol 검색 가능
+    - :cs find <사전 정의된 질의> <심볼>
+
+※ cscope -i cscope.files 실행 시 나오는 순서대로
+|숫자|질의 알파벳|내용|
+|:---:|:---:|:---|
+|0|s|Find this C symbol (변수, 함수, 매크로 등 symbol 검색)|
+|1|g|Find this global definition|
+|2|d|Find functions called by this function|
+|3|c|Find functions calling this function|
+|4|t|Find this text string|
+|5|e|Find this egrep pattern|
+|6|f|Find this file|
+|7|i|Find files #including this file|
+|8|a|Find assignments to this symbol|
+
+* ex) sum 함수 찾기
+    - :cs find g sum
+
+```
+func! CSFindDefinition()
+    let sm=expand("<cword>")
+    exe "cs find g " .sm
+endfunc
+nmap ,lg :call CSFindDefinition() <CR>
+```
 
 # Vundle
 

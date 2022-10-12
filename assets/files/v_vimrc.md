@@ -26,8 +26,45 @@ set fileencoding=korea
 set fileencodings=ubs-bom,utf-8,korea
 
 set nocompatible
-
 filetype off    " required
+
+"set tags +=./tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags,tags
+"set tags += ./tags,tags
+
+"""set cscope
+
+set nocsverb
+":cscope add cscope.out
+
+func! MakeCscope()
+  # need enter key
+    exe "!find `pwd` \\( -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.h' -o -name '*.hh' \\) -print > cscope.files"
+  # need ctrl + d
+    exe "!cscope -i cscope.files"
+endfunc
+
+if filereadable("./cscope.out")
+    cs add ./cscope.out
+elseif filereadable("../cscope.out")
+    cs add ../cscope.out
+elseif filereadable("../../cscope.out")
+    cs add ../../cscope.out
+elseif filereadable("../../../cscope.out")
+    cs add ../../../cscope.out
+elseif filereadable("../../../../cscope.out")
+    cs add ../.././../cscope.out
+elseif filereadable("../../../../../cscope.out")
+    cs add ../../../../../cscope.out
+elseif filereadable("../../../../../../cscope.out")
+    cs add ../../../../../../cscope.out
+elseif filereadable("../../../../../../../cscope.out")
+    cs add ../../../../../../../cscope.out
+else
+    :call MakeCscope()
+    cs add ./cscope.out
+endif
+
+set csverb
 
 " set the runtime path to include Vundle and initialize
 
@@ -114,6 +151,13 @@ func! GrepCPP()
   exe "!grep -rn " .sm " --include=*.{c,cc,cpp}"
 endfunc
 nmap ,lc :call GrepHPP() <CR>
+
+"==cscope find=="
+func! CSFindDefinition()
+    let sm=expand("<cword>")
+    exe "cs find g " .sm
+endfunc
+nmap ,lg :call CSFindDefinition() <CR>
 
 nmap <F4> :qa!<CR>
 nmap <F2> :tabnew<CR>
