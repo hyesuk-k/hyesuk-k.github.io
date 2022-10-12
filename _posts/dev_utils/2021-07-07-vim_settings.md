@@ -153,6 +153,7 @@ set csverb
     - :cs find <사전 정의된 질의> <심볼>
 
 ※ cscope -i cscope.files 실행 시 나오는 순서대로
+
 |숫자|질의 알파벳|내용|
 |:---:|:---:|:---|
 |0|s|Find this C symbol (변수, 함수, 매크로 등 symbol 검색)|
