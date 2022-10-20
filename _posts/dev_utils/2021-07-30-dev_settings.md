@@ -12,7 +12,7 @@ toc: true
 toc_sticky: true
 
 date: 2021-07-30
-last_modified_at: 2021-11-05
+last_modified_at: 2022-10-20
 ---
 
 * raspberry pi os format 후 세팅 기념ㅠㅠㅠㅠㅠ
@@ -257,7 +257,10 @@ sudo service smbd restart
 ```
 
 * sudo pdbedit -L -v
-* 추가한 userid 정보 확인
+  + 추가한 userid 정보 확인 가능
+
+* sudo smbpasswd -a <userid>
+  + userid의 비밀번호 설정 혹은 변경
 
 ## samba 접속
 
@@ -269,8 +272,13 @@ sudo service smbd restart
 * window10 > ubuntu20.04 접근 시, 조직의 보안 정책에서 인증되지 않은 게스트 액세스를 차단 ~~~
   + [제어판-프로그램-Windows 기능 켜기/끄기] : smb 관련 전부 체크
   + windows + R 키 : gpedit.msg : 컴퓨터구성 -> 관리 템플릿 -> 네트워크 -> Lanman 워크스테이션 -> 보안되지 않은 게스트 로그온 사용 설정 
+  + 윈도우 재부팅
+  
+### Linux (Pi or Ubuntu) 설정
 
-* 재부팅...
+* window10 > ubuntu20.04 접근 시, 조직의 보안 정책에서 인증되지 않은 게스트 액세스를 차단 ~~~
+  + 주석 :  map to guest = bad user
+  + sudo service smbd restart 
 
 ### Windows 11 설정
 
