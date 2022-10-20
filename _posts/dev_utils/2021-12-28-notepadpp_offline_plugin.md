@@ -15,7 +15,9 @@ date: 2021-12-28
 last_modified_at: 2021-12-28
 ---
 
-* 1-1. plugin [다운로드](https://sourceforge.net/projects/npp-plugins/)
+h1. NPP에 수동으로 플러그인 설치
+
+* 1-1. plugin [다운로드 참고](https://sourceforge.net/projects/npp-plugins/)
 * 1-2. dll 파일 확인
     + ex: C:\Program Files\Notepad++\plugins\NPPJSONViewer > Notepad++ 설치 위치에 따라 달라질 수 있음
     + NPPJSONViewer.dll 확인
@@ -26,5 +28,22 @@ last_modified_at: 2021-12-28
 
 * 4. Notepad++ 재시작
 
-EX) [Json Viewer](https://github.com/kapilratnani/JSON-Viewer)
+h1. 유용한 NPP Plugin
 
+* Json Viewer
+[NPPJsonV Source](https://github.com/kapilratnani/JSON-Viewer)
+[NPPJsonV release](https://github.com/kapilratnani/JSON-Viewer/releases/)
+[NPPJsonV Download in Sourceforge](https://sourceforge.net/projects/nppjsonviewer/files/JSONViewer%20Unicode/)
+
+* 문서 비교
+[Compare-release](https://github.com/pnedev/comparePlus/releases)
+
+* 자동 저장
+[AutoSave - zip](https://github.com/francostellari/NppPlugins/tree/main/AutoSave)
+
+* hex editor
+[NPP_HexEdit](https://github.com/chcg/NPP_HexEdit)
+
+
+* 기타
+  + [플러그인]-[플러그인 관리] 에서 repository 주소 확인이 가능하므로 해당 주소에서 수동으로 dll 파일 받아서 사용
